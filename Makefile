@@ -17,8 +17,9 @@ LIBRARIES = \
 	computation-lab	
 	
 BRANCHES = \
-	EcosystemScience,modif_design \
 	Soja,WebGl_inline
+	
+# 	EcosystemScience,modif_design \
 	
 SYM_LINKS = \
 	EcosystemScience,Javascript \
@@ -91,7 +92,7 @@ branches: prereq
 		popd; \
 	done
 	
-sym_links: branches
+sym_links: prereq
 	# ========================= SYMBOLIC LINKS =========================
 	for i in ${SYM_LINKS}; do \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
