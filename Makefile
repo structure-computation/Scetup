@@ -17,9 +17,9 @@ LIBRARIES = \
 	computation-lab	
 	
 BRANCHES = \
+	EcosystemScience,master \
 	Soja,WebGl_inline
 	
-# 	EcosystemScience,modif_design \
 	
 SYM_LINKS = \
 	EcosystemScience,Javascript \
@@ -81,6 +81,13 @@ software_library:
 prereq: software_library
 	# ========================= CLONING IF NECESSARY =========================
 	for i in ${LIBRARIES}; do test -e software_library/$$i || git clone git@github.com:structure-computation/$$i software_library/$$i; done
+
+pull:
+	for i in ${LIBRARIES}; do \
+		pushd software_library/$$i; \
+		git pull; \
+		popd; \
+	done
 
 branches: prereq
 	# ========================= SETTING BRANCHES =========================
