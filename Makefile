@@ -14,17 +14,28 @@ LIBRARIES = \
 	PrepArg \
 	EcosystemScience \
 	ScwalPlugins \
+	IpolPlugins \
 	computation-lab	
 	
 BRANCHES = \
 	EcosystemScience,master \
-	Soja,WebGl_inline
+	Soja,master \
+	Soda,master \
+	Celo,master \
+	Sipe,master \
+	PrepArg,master \
+	IpolPlugins,master \
+	ScwalPlugins,master \
+	computation-lab \
+	scills,master
+
 	
 	
 SYM_LINKS = \
 	EcosystemScience,Javascript \
 	computation-lab,Ruby \
-	ScwalPlugins,Plugins \
+	ScwalPlugins,ScwalPlugins \
+	IpolPlugins,IpolPlugins \
 	Soja,software_library/EcosystemScience/ext/Soja \
 	Soda,software_library/EcosystemScience/ext/Soda \
 	Celo,software_library/Soda/ext/Celo \
