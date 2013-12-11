@@ -79,10 +79,10 @@ soda_server: compilation
 	make -C Javascript mechanic
 
 plugins: compilation
-	make -C Plugins/GlobalManagerPlugin
+	make -C software_library/ScwalPlugins/GlobalManagerPlugin
 	
 plugins_with_sleep: compilation
-	sleep 10
+	sleep 5
 	make plugins
 
 
@@ -97,6 +97,14 @@ pull:
 	for i in ${LIBRARIES}; do \
 		pushd software_library/$$i; \
 		git pull; \
+		popd; \
+	done
+
+push:
+	for i in ${LIBRARIES}; do \
+		pushd software_library/$$i; \
+		git commit -a; \
+		git push; \
 		popd; \
 	done
 
