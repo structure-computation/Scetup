@@ -1,0 +1,12 @@
+make -C ../../Soca
+make[1]: entrant dans le répertoire « /home/jbellec/Scetup/software_library/Soca »
+make[1]: Rien à faire pour « all ».
+make[1]: quittant le répertoire « /home/jbellec/Scetup/software_library/Soca »
+metil_comp -O3 -g3 -I../../Soca/src -IServerPlugin/LMT/include -DQT_THREAD_SUPPORT ServerPlugin/src/main.cpp
+/home/jbellec/Scetup/software_library/ScwalPlugins/GlobalManagerPlugin/ServerPlugin/src/compilations/ServerPlugin_src_main_cpp.exe
+make -C ../../Soca
+make[1]: entrant dans le répertoire « /home/jbellec/Scetup/software_library/Soca »
+make[1]: Rien à faire pour « all ».
+make[1]: quittant le répertoire « /home/jbellec/Scetup/software_library/Soca »
+metil_comp -O3 -g3 -I../../Soca/src -IServerPlugin/LMT/include -DQT_THREAD_SUPPORT ServerPlugin/src/main.cpp
+/home/jbellec/Scetup/software_library/ScwalPlugins/GlobalManagerPlugin/ServerPlugin/src/compilations/ServerPlugin_src_main_cpp.exe
