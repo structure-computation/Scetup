@@ -51,6 +51,38 @@ SYM_LINKS = \
 	LMTpp,software_library/ScwalPlugins/GlobalManagerPlugin/ServerPlugin/LMT \
 	dic,software_library/ScwalPlugins/CorreliPlugin/ServerPlugin/dic
 
+LD = \
+	libfftw3-dev \
+	libjpeg-dev \
+	libpng12-dev \
+	libtiff4-dev \
+	scons \
+	gcc \
+	g++ \
+	python \
+	python-dev \
+	libpython-devel \
+	python-all-dev \
+	swig \
+	libboost-dev \
+	libgsl0-dev \
+	libxml2-dev \
+	libxml++2 \
+	libreadline-dev \
+	cmake \
+	libqt4-core \
+	libqt4-dev \
+	qt4-qmake \
+	libhdf5-serial-dev \
+	qtcreator \
+	coffeescript \
+	openmpi-bin \
+	libopenmpi-dev \
+	zlib1g-dev \
+	libglew-dev \
+	libxi-dev \
+	libxmu-dev \
+	freeglut3-dev \
 	
 	
 SHELL = /bin/bash
@@ -114,8 +146,15 @@ branches: prereq
 		git checkout -b $$B origin/$$B 2> /dev/null || git checkout $$B; \
 		popd; \
 	done
+
+ld_libraries: prereq
+	# ========================= LD LIBRARIES =========================
+	for i in ${LD}; do \
+		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
+		which $$R || sudo apt-get install $$R; \
+	done
 	
-sym_links: prereq
+sym_links: ld_libraries
 	# ========================= SYMBOLIC LINKS =========================
 	for i in ${SYM_LINKS}; do \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
