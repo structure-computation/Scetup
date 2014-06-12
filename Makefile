@@ -155,8 +155,10 @@ ld_libraries: prereq
 	for i in ${LD}; do \
 		#R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
 		#which $$i || sudo apt-get install $$i; \
-		dpkg -s $$i > /dev/null  || sudo apt-get install $$i; \
+		#dpkg -s $$i > /dev/null  || sudo apt-get install $$i; \
 		#sudo apt-get install $$i; \
+		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
+		dpkg --status $$R || sudo apt-get install $$R; \
 	done
 	
 sym_links: ld_libraries
