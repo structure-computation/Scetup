@@ -14,6 +14,7 @@ LIBRARIES = \
 	PrepArg \
 	EcosystemScience \
 	ScwalPlugins \
+	IpolPlugins \
 	computation-lab	
 	
 BRANCHES = \
@@ -61,6 +62,11 @@ LD = \
 	g++ \
 	python \
 	python-dev \
+<<<<<<< HEAD
+=======
+	python-pip \
+	libpython-devel \
+>>>>>>> aeb98192278d6944f522cf4c14da2c9bb801feae
 	python-all-dev \
 	swig \
 	libboost-dev \
@@ -71,7 +77,6 @@ LD = \
 	libqt4-core \
 	libqt4-dev \
 	qt4-qmake \
-	libhdf5-serial-dev \
 	qtcreator \
 	coffeescript \
 	openmpi-bin \
@@ -81,6 +86,8 @@ LD = \
 	libxi-dev \
 	libxmu-dev \
 	freeglut3-dev \
+	gmsh \
+	libopencascade-dev
 	
 	
 SHELL = /bin/bash
@@ -89,11 +96,22 @@ all: soda_server
 
 ramona: compilation
 	which easy_install || sudo apt-get install easy_install
+	python -c "import pyev" || sudo easy_install pyev
 	python -c "import ramona" || sudo easy_install ramona
 	# ==========================================================
 	# Lancement de ramona -> http://localhost:5588
 	# ==========================================================
 	./ram.py server
+	
+	# =======
+	# all: compilation
+	# 	#which easy_install || sudo apt-get install easy_install
+	# 	#python -c "import ramona" || sudo easy_install ramona
+	# 	## ==========================================================
+	# 	## Lancement de ramona -> http://localhost:5588
+	# 	## ==========================================================
+	# 	#./ram.py server
+	# >>>>>>> aeb98192278d6944f522cf4c14da2c9bb801feae
 
 compilation: sym_links
 	which metil_comp || make -C software_library/Metil install
@@ -150,6 +168,10 @@ branches: prereq
 ld_libraries: prereq
 	# ========================= LD LIBRARIES =========================
 	for i in ${LD}; do \
+		#R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
+		#which $$i || sudo apt-get install $$i; \
+		#dpkg -s $$i > /dev/null  || sudo apt-get install $$i; \
+		#sudo apt-get install $$i; \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
 		dpkg --status $$R || sudo apt-get install $$R; \
 	done
