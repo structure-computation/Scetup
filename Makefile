@@ -13,6 +13,7 @@ LIBRARIES = \
 	Sipe \
 	PrepArg \
 	EcosystemScience \
+	IpolPlugins \
 	ScwalPlugins \
 	IpolPlugins \
 	computation-lab	
@@ -62,11 +63,8 @@ LD = \
 	g++ \
 	python \
 	python-dev \
-<<<<<<< HEAD
-=======
 	python-pip \
 	libpython-devel \
->>>>>>> aeb98192278d6944f522cf4c14da2c9bb801feae
 	python-all-dev \
 	swig \
 	libboost-dev \
@@ -86,32 +84,22 @@ LD = \
 	libxi-dev \
 	libxmu-dev \
 	freeglut3-dev \
+	libcurl4-openssl-dev \
 	gmsh \
 	libopencascade-dev
 	
 	
-SHELL = /bin/bash
 	
 all: soda_server
 
 ramona: compilation
-	which easy_install || sudo apt-get install easy_install
+	which easy_install || sudo apt-get install python-setuptools
 	python -c "import pyev" || sudo easy_install pyev
 	python -c "import ramona" || sudo easy_install ramona
 	# ==========================================================
 	# Lancement de ramona -> http://localhost:5588
 	# ==========================================================
 	./ram.py server
-	
-	# =======
-	# all: compilation
-	# 	#which easy_install || sudo apt-get install easy_install
-	# 	#python -c "import ramona" || sudo easy_install ramona
-	# 	## ==========================================================
-	# 	## Lancement de ramona -> http://localhost:5588
-	# 	## ==========================================================
-	# 	#./ram.py server
-	# >>>>>>> aeb98192278d6944f522cf4c14da2c9bb801feae
 
 compilation: sym_links
 	which metil_comp || make -C software_library/Metil install
@@ -173,7 +161,7 @@ ld_libraries: prereq
 		#dpkg -s $$i > /dev/null  || sudo apt-get install $$i; \
 		#sudo apt-get install $$i; \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
-		dpkg --status $$R || sudo apt-get install $$R; \
+		( dpkg --status $$R > /dev/null ) || sudo apt-get install $$R; \
 	done
 	
 sym_links: ld_libraries
