@@ -13,6 +13,7 @@ LIBRARIES = \
 	Sipe \
 	PrepArg \
 	EcosystemScience \
+	IpolPlugins \
 	ScwalPlugins \
 	computation-lab	
 	
@@ -83,17 +84,24 @@ LD = \
 	libxi-dev \
 	libxmu-dev \
 	freeglut3-dev \
+	libcurl4-openssl-dev
+	
 	
 	
 SHELL = /bin/bash
-	
+
+
 all: compilation
-	which easy_install || sudo apt-get install easy_install
+	which easy_install || sudo apt-get install python-setuptools
+	python -c "import pyev" || sudo easy_install pyev
 	python -c "import ramona" || sudo easy_install ramona
 	# ==========================================================
 	# Lancement de ramona -> http://localhost:5588
 	# ==========================================================
 	./ram.py server
+
+basic:
+	make -C Javascript mechanic
 
 compilation: sym_links
 	which metil_comp || make -C software_library/Metil install
@@ -151,7 +159,7 @@ ld_libraries: prereq
 	# ========================= LD LIBRARIES =========================
 	for i in ${LD}; do \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
-		dpkg --status $$R || sudo apt-get install $$R; \
+		( dpkg --status $$R > /dev/null ) || sudo apt-get install $$R; \
 	done
 	
 sym_links: ld_libraries
