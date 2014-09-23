@@ -15,6 +15,7 @@ LIBRARIES = \
 	EcosystemScience \
 	IpolPlugins \
 	ScwalPlugins \
+	IpolPlugins \
 	computation-lab	
 	
 BRANCHES = \
@@ -62,6 +63,7 @@ LD = \
 	g++ \
 	python \
 	python-dev \
+	python-pip \
 	libpython-devel \
 	python-all-dev \
 	swig \
@@ -74,7 +76,6 @@ LD = \
 	libqt4-core \
 	libqt4-dev \
 	qt4-qmake \
-	libhdf5-serial-dev \
 	qtcreator \
 	coffeescript \
 	openmpi-bin \
@@ -84,7 +85,9 @@ LD = \
 	libxi-dev \
 	libxmu-dev \
 	freeglut3-dev \
-	libcurl4-openssl-dev
+	libcurl4-openssl-dev \
+	gmsh \
+	libopencascade-dev
 	
 	
 	
@@ -158,6 +161,10 @@ branches: prereq
 ld_libraries: prereq
 	# ========================= LD LIBRARIES =========================
 	for i in ${LD}; do \
+		#R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
+		#which $$i || sudo apt-get install $$i; \
+		#dpkg -s $$i > /dev/null  || sudo apt-get install $$i; \
+		#sudo apt-get install $$i; \
 		R=`echo $$i | sed 's/\\(.*\\),.*/\\1/'`; \
 		( dpkg --status $$R > /dev/null ) || sudo apt-get install $$R; \
 	done
