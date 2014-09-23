@@ -61,13 +61,11 @@ LD = \
 	g++ \
 	python \
 	python-dev \
-	libpython-devel \
 	python-all-dev \
 	swig \
 	libboost-dev \
 	libgsl0-dev \
 	libxml2-dev \
-	libxml++2 \
 	libreadline-dev \
 	cmake \
 	libqt4-core \
@@ -87,7 +85,9 @@ LD = \
 	
 SHELL = /bin/bash
 	
-all: compilation
+all: soda_server
+
+ramona: compilation
 	which easy_install || sudo apt-get install easy_install
 	python -c "import ramona" || sudo easy_install ramona
 	# ==========================================================
