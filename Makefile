@@ -64,7 +64,6 @@ LD = \
 	python \
 	python-dev \
 	python-pip \
-	libpython-devel \
 	python-all-dev \
 	swig \
 	libboost-dev \
@@ -85,8 +84,9 @@ LD = \
 	libxmu-dev \
 	freeglut3-dev \
 	libcurl4-openssl-dev \
-	gmsh \
-	libopencascade-dev
+	gmsh
+	# 	libopencascade-dev
+	# 	libpython-devel \
 	
 	
 	
